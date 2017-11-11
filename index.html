@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Veronica's Hangman-Game</title>
+<!-- Added link to the jQuery library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Link to Eric Meyer's Reset CSS-->
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+<!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!-- Link to custom CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<!-- Link to google font used -->
+  <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <h1>Hangman 300</h1>
+    <h2>Press any key to get started!</h2>
+<!-- Here is where random word with underscores will go -->
+     <h3 id="current-word"></h3>
+<p>Current Word<span id="underscores"></span></p>
+     
+<p>Wins
+  <br>
+<span id="wins-count"></span>
+</p>
+
+
+<p>Number of Guesses Remaining
+      <br>
+
+    <span id="counter"></span>
+</p>
+<p>Letters already guessed
+  <br>
+
+  <span id="letters-guessed"></span>
+</p>
+
+   
+<!-- Link to javascript -->
+<script src="assets/javascript/game.js"></script>
+  
+
+  </body>
+</html>
