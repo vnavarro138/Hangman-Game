@@ -42,18 +42,13 @@ var losses = 0;
 function startGame () {
 	//replaces letters guessed with an empty array for the letters guessed
 		lettersGuessed = [];
-	//empty the placeholders for answer spaces, otherwise if your next word 
-	//is shorter than the previous one guessed correctly, the letters will
-	//still be there appended to your next word's underscores
+			//empty the placeholders for answer spaces otherwise if your next
+			//
 		answerSpaces = [];
-	//reset guesses remaining to 12 
 		guessesRemaining = 12;
-	//get a new random word from random word array
 		currentWord = randomWordArray[Math.floor(Math.random() * randomWordArray.length)];
-	//split the word to be guessed into an array, each letter is it's own index	
 		currentLetters = currentWord.split("");
 		console.log(currentLetters);
-	//replace the word to be guessed with answer spaces
 			for (var i = 0; i < currentWord.length; i++) {
 					answerSpaces[i] = " _ ";
 			}
@@ -66,11 +61,13 @@ console.log("Test: " + guessesRemaining);
 
 
 
-function newFunction () {
+
 	//Captures keyboard input (letter)
 document.onkeyup = function(event) {
+	var guess = event.key;
+//check if guess already exists in lettersGuessed ie. duplicate guesses won't count against player
+	if (lettersGuessed.includes(guess)===false) {
 
-		var guess = event.key;
 		console.log(guess)
 		var xGuess = false;
 
@@ -81,51 +78,55 @@ document.onkeyup = function(event) {
 			}
 		
 		}
-			
-			if (xGuess == true) { 
-				for (var j = 0; j < currentLetters.length; j++) {
-					if (currentLetters[j] === guess) {
-							answerSpaces[j] = guess;
-					}
+	//replace underscores with correctly guessed letters		
+		if (xGuess == true) { 
+			for (var j = 0; j < currentLetters.length; j++) {
+				if (currentLetters[j] === guess) {
+					answerSpaces[j] = guess;
 				}
-
-			} 
-
-			// 
-			else { 
-				console.log("xGuess still false? " + xGuess);
-				guessesRemaining--;
-				lettersGuessed.push(guess);
-		 		console.log(lettersGuessed);
-		 		console.log(answerSpaces + "array test");
-				console.log(guessesRemaining);
 			}
+
+		} 
+
+	//
+		else { 
+			console.log("xGuess still false? " + xGuess);
+			guessesRemaining--;
+			lettersGuessed.push(guess);
+		 	console.log(lettersGuessed);
+		 	console.log(answerSpaces + "array test");
+			console.log(guessesRemaining);
+		}
 
 		$("#counter").text(guessesRemaining);
 		$("#letters-guessed").text(lettersGuessed);
 		$("#current-word").text(answerSpaces.join(""));
 		winsDetermined ();
-		}
+	}
+	else {
+		alert("You already guessed this letter!");
+	}
 }
+
 console.log(guessesRemaining);
 
 //new code 09NOV17
 function winsDetermined () {		
-		if (currentLetters.toString() === answerSpaces.toString()) {
-			wins++;
-			document.getElementById("wins-count").innerHTML = wins;
-			alert("THIS...IS...SPARTA!");
-			console.log ("You win");
-			console.log(wins);
-			startGame();
-			//calculate loss
-		} else if (guessesRemaining === 0) {
-			losses++;
-			alert("You lose! No glory!");
-			console.log ("You lose");
-			console.log(losses);
-			startGame();
-			}
+	if (currentLetters.toString() === answerSpaces.toString()) {
+		wins++;
+		document.getElementById("wins-count").innerHTML = wins;
+		alert("THIS...IS...SPARTA!");
+		console.log ("You win");
+		console.log(wins);
+		startGame();
+		//calculate loss
+	} else if (guessesRemaining === 0) {
+		losses++;
+		alert("You lose! No glory!");
+		console.log ("You lose");
+		console.log(losses);
+		startGame();
+	}
 }
 startGame();
 newFunction();
